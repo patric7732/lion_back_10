@@ -25,7 +25,9 @@ public class ifExam02 {
 			int height = keyboard.nextInt();
 			System.out.println("몸무게를 입력하세요.");
 			int weight = keyboard.nextInt();
-			비만도측정(height, weight);
+//			비만도측정(height, weight);
+
+
 
 			System.out.println("종료하시겠습니다??  종료는 0, 계속은 아무거나 입력");
 			int endFlag = keyboard.nextInt();

@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class BitOperatorExam1 {
     public static void main(String[] args){
         int a = 4;

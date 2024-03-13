@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class CharExam1 {
     public static void main(String[] args){
         char c1 = 'A';

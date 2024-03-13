@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class DayType {
     public final static int SUNDAY = 0;
     public final static int MONDAY = 1;

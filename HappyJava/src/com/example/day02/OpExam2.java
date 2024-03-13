@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class OpExam2 {
     public static void main(String[] args) {
         int a = 5;
@@ -11,10 +13,10 @@ public class OpExam2 {
 
         System.out.println(b);
 
-//        Book book = new Book();
+//        com.example.day02.Book book = new com.example.day02.Book();
 //        book.getPrice();
 
-//        Book.price = 10;
+//        com.example.day02.Book.price = 10;
 
         System.out.println(Integer.MAX_VALUE);
     }

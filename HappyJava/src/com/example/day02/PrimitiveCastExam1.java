@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class PrimitiveCastExam1 {
 
     public static void test(int i){

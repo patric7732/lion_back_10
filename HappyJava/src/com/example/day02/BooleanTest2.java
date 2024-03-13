@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class BooleanTest2 {
 
     public static void main(String[] args){

@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class IntPrint {
     public static void main(String[] args) {
         byte b;

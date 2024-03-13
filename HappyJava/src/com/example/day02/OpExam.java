@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class OpExam {
     public static void main(String[] args) {
         boolean flag = false;

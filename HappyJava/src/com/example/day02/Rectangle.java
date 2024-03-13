@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class Rectangle {
     int s;  //필드
     public static void main(String[] args) {

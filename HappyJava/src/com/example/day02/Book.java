@@ -1,3 +1,5 @@
+package com.example.day02;
+
 public class Book {
     private String title;
      static int price;
