@@ -2,10 +2,19 @@ package com.example.day03;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.Scanner;
+
 public class ForExam1 {
     public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("숫자를 입력하세요.");
+        int count = keyboard.nextInt();
+
+
         int sum =0;
-        for(int i = 1; i <= 100; i++){
+
+
+        for(int i = 1; i <= count; i++){
 //            int sum = 0;
             if(i%2==0) {
 //                System.out.println(i);
@@ -13,7 +22,7 @@ public class ForExam1 {
 //                System.out.println(sum);
             }
         }
-        System.out.println(sum);
+        System.out.println("1부터 "+count + "의 짝수의 합 : "+sum);
 
         int index = 0;
         for(;;){  //무한루프
