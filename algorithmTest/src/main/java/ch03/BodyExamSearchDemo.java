@@ -7,6 +7,7 @@ import java.util.Comparator;
 class BodyExamSearchDemo {
     // 신체검사 데이터를 위한 내부 클래스 정의
     static class BodyData {
+
         private String name;    // 이름
         private int height;     // 키
         private double weight;  // 몸무게
@@ -19,7 +20,7 @@ class BodyExamSearchDemo {
         }
 
         // toString 메서드 오버라이드
-
+        @Override
         public String toString() {
             return name + " " + height + "cm " + weight + "kg";
         }
