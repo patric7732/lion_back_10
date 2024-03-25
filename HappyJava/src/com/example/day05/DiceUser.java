@@ -4,7 +4,7 @@ public class DiceUser {
     //주사위를 n 번 굴려서 나오는 눈이 x 와 같은 횟수를 보여주세요.
     public static int diceGame(Dice dice, int totalCount, int eye){
         int count = 0;
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < totalCount; i++){
             dice.roll();
             if(dice.eye == eye){
                 count++;
