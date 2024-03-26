@@ -12,3 +12,15 @@ Car 클래스를 정의하고 기본 정보를 출력하는 displayInfo() 메서
 Car 클래스를 상속받는 ElectricCar 클래스를 정의
 ElectricCar에 batteryCapacity 필드 추가 및 displayInfo() 메서드 오버라이딩
 main 메서드에서 Car와 ElectricCar 객체를 생성하여 각각의 displayInfo() 메서드를 호출하여 테스트
+
+main 예시
+
+public static void main(String[] args) {
+        // Car 클래스의 인스턴스 생성
+        Car car = new Car("Hyundai", "Sonata", 2020);
+        car.displayInfo();
+        
+        // ElectricCar 클래스의 인스턴스 생성
+        ElectricCar electricCar = new ElectricCar("Tesla", "Model S", 2021, 75);
+        electricCar.displayInfo();
+    }
