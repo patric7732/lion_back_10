@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      hello();
+
+      //호이스팅되지 않는다.. 오류발생
+      //   func1();
+
+      //함수 호이스팅..
+      function hello() {
+        console.log("hello");
+      }
+      //중복정의 가능!!
+      //중복정의 되었을때는 가장 마지막에 정의된 함수가 실행됨.
+      function hello() {
+        console.log("carami hello~~~!!");
+      }
+
+      //상수 func1 에 함수가 정의..  함수가 일급객체이므로 가능!!
+      const func1 = function () {
+        console.log("func Hello!!!");
+      };
+
+      func1();
+    </script>
+  </body>
+</html>
