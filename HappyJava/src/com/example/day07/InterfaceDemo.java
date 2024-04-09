@@ -21,6 +21,8 @@ public class InterfaceDemo {
         Ainter a = new AImpl();
         ((AImpl)a).say();  // 타입이 아는 것 까지만 쓸 수 있고, 외에것을 쓰고 싶다면 형변환이 필요!!
 
-
+        System.out.println(Ainter.I);
+        System.out.println(Binter.i);
+        System.out.println(CInter.i);
     }
 }
