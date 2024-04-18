@@ -7,6 +7,11 @@ class MyThread extends Thread {
         //쓰레드가 해야하는 일
         for (int i = 0; i < 100; i++) {
             System.out.println("myThread 안녕!!!");
+            try {
+                sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         System.out.println("MyThread종료!!!");
     }  //상속..  Thread 를 상속받은 MyThread 는 Thread 이다.
