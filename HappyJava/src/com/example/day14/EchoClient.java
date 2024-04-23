@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 public class EchoClient {
     public static void main(String[] args) throws IOException {
         String hostName = "127.0.0.1"; // 서버의 호스트 이름 또는 IP 주소
-        int portNumber = 12345; // 서버 포트 번호
+        int portNumber = 9999; // 서버 포트 번호
 
         try (Socket echoSocket = new Socket(hostName, portNumber);
              PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);

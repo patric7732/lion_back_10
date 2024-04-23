@@ -19,7 +19,10 @@ public class EchoThreadServer2 {
                 System.out.println("새로운 클라이언트가 연결되었습니다: " + clientSocket);
 
                 // 클라이언트를 위한 새 스레드 시작
-                new Thread(new ClientHandler(clientSocket)).start();
+//                new Thread(new ClientHandler(clientSocket)).start();
+                ClientHandler clientHandler = new ClientHandler(clientSocket);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
             }
         } catch (IOException e) {
             System.out.println("서버를 포트 " + PORT_NUMBER + "에서 시작할 수 없습니다.");
