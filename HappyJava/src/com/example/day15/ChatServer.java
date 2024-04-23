@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class ChatServer {
@@ -60,8 +61,6 @@ class ChatThread extends Thread {
             synchronized (chatClients) {
                 chatClients.put(this.id, out);
             }
-
-
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
@@ -80,7 +79,6 @@ class ChatThread extends Thread {
                     break;
                 broadcast(id + " : " + msg);
             }
-
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
@@ -110,9 +108,21 @@ class ChatThread extends Thread {
 
     //전체 사용자에게 알려주는 메서드
     public void broadcast(String msg) {
-        for (PrintWriter out : chatClients.values()) {
-            out.println(msg);
-//            out.flush();
+//        for (PrintWriter out : chatClients.values()) {
+//            out.println(msg);
+////            out.flush();
+//        }
+        synchronized (chatClients) {
+            Iterator<PrintWriter> it = chatClients.values().iterator();
+            while (it.hasNext()) {
+                PrintWriter out = it.next();
+                try {
+                    out.println(msg);
+                } catch (Exception e) {
+                    it.remove();  //브로드케스트 할 수 없는 사용자를 제거한다.
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
