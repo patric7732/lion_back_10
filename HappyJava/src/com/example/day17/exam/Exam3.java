@@ -4,23 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//class Student {
-//    private String name;
-//    private int score;
-//
-//    public Student(String name, int score) {
-//        this.name = name;
-//        this.score = score;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getScore() {
-//        return score;
-//    }
-//}
+class Student {
+    private String name;
+    private int score;
+
+    public Student(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+}
 
 public class Exam3 {
     public static void main(String[] args) {
