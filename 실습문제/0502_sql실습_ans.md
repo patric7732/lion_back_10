@@ -111,8 +111,8 @@
 
 2. 근무 기간을 월로 계산
    ```sql
-  SELECT employee_id, start_date, end_date,
-       ROUND(MONTHS_BETWEEN(end_date, start_date)) AS months_worked
+SELECT employee_id, start_date, end_date,
+       TIMESTAMPDIFF(MONTH, start_date, end_date) AS months_worked
 FROM job_history;
    ```
 
