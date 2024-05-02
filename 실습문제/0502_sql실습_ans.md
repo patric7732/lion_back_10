@@ -118,42 +118,58 @@ FROM job_history;
 
 3. 오늘로부터 입사한 지 10년 된 직원들의 이름과 입사 날짜를 조회
    ```sql
-   SELECT first_name, last_name, hire_date FROM employees WHERE hire_date = ADD_MONTHS(SYSDATE, -120);
+  SELECT first_name, last_name, hire_date 
+FROM employees 
+WHERE hire_date = CURDATE() - INTERVAL 120 MONTH;
    ```
 
-4. 이번 달에 생일인 직원들의 이름과 생일을 조회
+4. 이번 달이 입사월인 직원들의 이름과 생일을 조회
    ```sql
-   SELECT first_name, last_name, birth_date FROM employees WHERE EXTRACT(MONTH FROM birth_date) = EXTRACT(MONTH FROM SYSDATE);
+  SELECT first_name, last_name, hire_date
+FROM employees
+WHERE MONTH(hire_date) = MONTH(CURDATE());
    ```
 
-5. 입사 날짜가 최근 3년 이내인 직원들의 이름과 입사 날짜를 조회
+5. 입사 날짜가 최근 30년 이내인 직원들의 이름과 입사 날짜를 조회
    ```sql
-   SELECT first_name, last_name, hire_date FROM employees WHERE hire_date > ADD_MONTHS(SYSDATE, -36);
+   SELECT first_name, last_name, hire_date
+FROM employees
+WHERE hire_date >= CURDATE() - INTERVAL 30 YEAR;
    ```
 
-6. 부서 변경 횟수를 계산
+6. job_history 테이블에서 직원이 특정 부서에 근무한 기간을 일(days) 단위로 조회
    ```sql
-   SELECT employee_id, COUNT(*) AS department_changes FROM job_history GROUP BY employee_id;
+   SELECT employee_id, department_id, start_date, end_date,
+       DATEDIFF(end_date, start_date) AS days_worked
+FROM job_history;
    ```
 
 7. 가장 오래전에 입사한 직원의 이름과 입사 날짜를 조회
    ```sql
-   SELECT first_name, last_name, hire_date FROM employees WHERE hire_date = (SELECT MIN(hire_date) FROM employees);
+   SELECT first_name, last_name, hire_date 
+FROM employees 
+ORDER BY hire_date ASC 
+LIMIT 1;
+
    ```
 
-8. 각 직원의 마지막 생일로부터 경과한 일수를 조회
+8. `employees` 테이블에서 각 직원의 입사일로부터 경과한 일수를 조회하세요.
    ```sql
-   SELECT first_name, last_name, SYSDATE - LAST_DAY(ADD_MONTHS(birth_date, (EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM birth_date)) * 12)) AS days_since_last_birthday FROM employees;
+   SELECT first_name, last_name, hire_date,
+       DATEDIFF(CURDATE(), hire_date) AS days_since_hire
+FROM employees;
+
    ```
 
-9. 2000년대에 시작된 모든 근무 기록을 조회
+9. 1999년대에 시작된 모든 근무 기록을 조회
    ```sql
-   SELECT * FROM job_history WHERE EXTRACT(YEAR FROM start_date) >= 2000;
+   SELECT * FROM job_history WHERE EXTRACT(YEAR FROM start_date) >= 1999;
    ```
 
 10. 각 직원의 입사 날짜를 요일로 표시
     ```sql
-    SELECT first_name, last_name, TO_CHAR(hire_date, 'Day') AS weekday FROM employees;
+    SELECT first_name, last_name, hire_date, DAYNAME(hire_date) AS weekday
+FROM employees;
     ```
 
 ### 숫자형 함수 사용 (수치 데이터 처리)
