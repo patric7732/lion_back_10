@@ -111,11 +111,9 @@
 
 2. 근무 기간을 월로 계산
    ```sql
-   SELECT employee_id, department_id, (EXTRACT(YEAR FROM end_date) - EXTRACT(YEAR FROM start_date)) *
-
- 12 +
-         (EXTRACT(MONTH FROM end_date) - EXTRACT(MONTH FROM start_date)) AS months_worked
-   FROM job_history;
+  SELECT employee_id, start_date, end_date,
+       ROUND(MONTHS_BETWEEN(end_date, start_date)) AS months_worked
+FROM job_history;
    ```
 
 3. 오늘로부터 입사한 지 10년 된 직원들의 이름과 입사 날짜를 조회
