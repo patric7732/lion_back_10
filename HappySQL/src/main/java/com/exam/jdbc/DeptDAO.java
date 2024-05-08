@@ -1,9 +1,7 @@
 package com.exam.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeptDAO {
@@ -19,11 +17,8 @@ public class DeptDAO {
 
         try {
             //3. 접속
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://localhost/exampledb";
-            String user = "carami";
-            String password = "kang1234";
-            conn = DriverManager.getConnection(dbUrl,user,password);
+            conn = DBUtil.getConnection();
+
             //4. 쿼리작성
             String sql = "insert into dept(deptno,dname,loc) values (?,?,?)";
 
@@ -44,24 +39,8 @@ public class DeptDAO {
             e.printStackTrace();
         }finally {
             //2. 닫아준다.
-            if(ps != null){
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            DBUtil.close(conn,ps);
         }
-
-
-
         return resultFlag;
     }
     //수정
@@ -72,11 +51,7 @@ public class DeptDAO {
        int resultCount = 0;
         try {
             //3. 접속
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://localhost/exampledb";
-            String user = "carami";
-            String password = "kang1234";
-            conn = DriverManager.getConnection(dbUrl,user,password);
+            conn = DBUtil.getConnection();
             //4. 쿼리작성
             String sql = "update dept set dname=?, loc=? where deptno = ?";
 
@@ -96,41 +71,97 @@ public class DeptDAO {
             e.printStackTrace();
         }finally {
             //2. 닫아준다.
-            if(ps != null){
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+           DBUtil.close(conn,ps);
         }
-
-
-
         return resultCount;
     }
     //삭제
     public void deleteDept(int deptno){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try{
+            conn = DBUtil.getConnection();
+            ps = conn.prepareStatement("delete from dept where deptno=?");
+            ps.setInt(1,deptno);
+
+            ps.executeUpdate();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(conn,ps);
+        }
+
 
     }
 
     //한 건 조회
     public DeptDTO getDept(int deptno){
+        //1. 필요한객체 선언
+       Connection conn = null;
+       PreparedStatement ps = null;
+        ResultSet rs = null;
 
-        return null;
+        DeptDTO deptDTO = null;
+        try {
+            // 3. 접속
+            conn = DBUtil.getConnection();
+            // 4. 쿼리작성
+            String sql = "select deptno,dname,loc from dept where deptno = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,deptno);
+            // 5. 실행
+            rs = ps.executeQuery();
+            // 6. 결과값처리
+            if(rs.next()){
+                deptDTO = new DeptDTO();
+                deptDTO.setDeptno(rs.getInt("deptno"));
+                deptDTO.setDname(rs.getString(2));
+                deptDTO.setLoc(rs.getString(3));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            //2. 닫는다.
+            DBUtil.close(conn,ps,rs);
+        }
+        return deptDTO;
     }
 
     //모두 조회
     public List<DeptDTO> getAllDept(){
+        //1. 필요한객체 선언
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-        return null;
+        List<DeptDTO> deptList = new ArrayList<>();
+        try {
+            // 3. 접속
+            conn = DBUtil.getConnection();
+            // 4. 쿼리작성
+            String sql = "select deptno,dname,loc from dept";
+            ps = conn.prepareStatement(sql);
+            // 5. 실행
+            rs = ps.executeQuery();
+            // 6. 결과값처리
+            while(rs.next()){
+                DeptDTO  deptDTO = new DeptDTO();
+                deptDTO.setDeptno(rs.getInt("deptno"));
+                deptDTO.setDname(rs.getString(2));
+                deptDTO.setLoc(rs.getString(3));
+
+                deptList.add(deptDTO);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            //2. 닫는다.
+            DBUtil.close(conn,ps,rs);
+        }
+        return deptList;
     }
 
 
