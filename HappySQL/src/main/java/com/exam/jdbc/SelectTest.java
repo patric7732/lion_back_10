@@ -27,8 +27,6 @@ public class SelectTest {
                 System.out.print(rs.getString(2)+"  ");
                 System.out.println(rs.getString(3));
             }
-
-
         }catch (Exception e){
             e.printStackTrace();
         }finally {

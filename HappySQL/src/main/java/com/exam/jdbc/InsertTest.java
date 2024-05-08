@@ -18,17 +18,20 @@ public class InsertTest {
             String user = "carami";
             String password = "kang1234";
             conn = DriverManager.getConnection(dbUrl,user,password);
+            conn.setAutoCommit(false);
             //4. 쿼리작성
-            String sql = "insert into dept(deptno,dname,loc) values (60,?,?)";
+            String sql = "insert into dept(deptno,dname,loc) values (80,?,?)";
 
             ps = conn.prepareStatement(sql);
 
-            ps.setString(1,"개발부");
-            ps.setString(2,"인천");
+            ps.setString(1,"교육부");
+            ps.setString(2,"일산");
 
             //5. 실행.
             int count = ps.executeUpdate();
             System.out.println(count+"건 입력했습니다!!");
+
+            conn.commit();
         }catch (Exception e){
             e.printStackTrace();
         }finally {
