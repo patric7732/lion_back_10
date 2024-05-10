@@ -1,5 +1,7 @@
 package sample.bean;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 public class Game {
