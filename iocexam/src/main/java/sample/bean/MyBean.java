@@ -8,6 +8,11 @@ public class MyBean {
         System.out.println("MyBean 생성!! ");
     }
 
+    public MyBean(String name, int count) {
+        this.name = name;
+        this.count = count;
+    }
+
     public String getName() {
         return name;
     }

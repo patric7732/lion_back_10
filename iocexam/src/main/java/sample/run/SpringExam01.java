@@ -29,7 +29,8 @@ public class SpringExam01 {
 
         System.out.println(bean1);
 
-//        MyBean bean2 = context.getBean(MyBean.class);  // 타입만 알려줌.
+//        MyBean bean2 = context.getBean(MyBean.class);  // 타입만 알려줌.  -- 해당 타입의 객체가 하나만 존재할 때는 오류가 없다.
+        //그러나 2 개 이상일 때는...  ㅠㅠ
 
         MyBean bean2 = context.getBean("myBean2",MyBean.class);
 
@@ -39,8 +40,27 @@ public class SpringExam01 {
 
         if(bean2 == bean1)
             System.out.println("같아요.");
+        else System.out.println("bean1과 bean2는 다른 인스턴스입니다.");
 
 
+        MyBean bean3 = context.getBean("myBean", MyBean.class);
+
+        if(bean3 == bean1)
+            System.out.println("bean3과 bean1은 같은 인스턴스입니다.");
+
+
+        MyBean bean4 = context.getBean("myBean3", MyBean.class);
+        bean4.setName("hong");
+
+        MyBean bean5 = context.getBean("myBean3", MyBean.class);
+        bean5.setName("lee");
+
+
+        System.out.println(bean4);
+        System.out.println(bean5);
+
+        MyBean bean6 = context.getBean("myBean4",MyBean.class);
+        System.out.println(bean6);
 
         //3. xml을 통해서 알려줌.   -- 현재는 많이 사용하지 않기 때문에..
         /*
