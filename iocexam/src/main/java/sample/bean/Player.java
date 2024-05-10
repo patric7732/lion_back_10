@@ -9,6 +9,11 @@ public class Player {
     //2. 설정자를 통한 주입(setter)
     //3. 필드를 통한 주입.
 
+
+    public Player() {
+        System.out.println("Player() 생성자 실행");
+    }
+
     public String getName() {
         return name;
     }
