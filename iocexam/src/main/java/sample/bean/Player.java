@@ -2,7 +2,7 @@ package sample.bean;
 
 import org.springframework.stereotype.Component;
 
-
+//@Component
 public class Player {
     private String name;
     private Dice dice;   //실행될때 주사위를 인젝션 받아야한다.
