@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-//@Repository
+@Repository
 public class UserCaramiDaoImpl implements UserDao{
     @Override
     public User getUser(String email) {

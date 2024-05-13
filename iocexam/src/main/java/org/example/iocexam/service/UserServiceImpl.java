@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService{
 //    @Autowired
     private UserDao userDao;  //필드기반주입
 
     //설정자 주입을 위해서 필요.
-//    @Autowired //ComponentScan은 기본으로 생성자를 통해 주입하므로, 설정자를통해 주입받고싶다면 @Autowired를 붙힌다.
-//    @Qualifier("userDaoImpl")
+    @Autowired //ComponentScan은 기본으로 생성자를 통해 주입하므로, 설정자를통해 주입받고싶다면 @Autowired를 붙힌다.
+    @Qualifier("userDaoImpl")
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
