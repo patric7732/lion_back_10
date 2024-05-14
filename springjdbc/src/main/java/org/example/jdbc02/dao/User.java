@@ -1,13 +1,10 @@
-package org.example.jdbc01;
+package org.example.jdbc02.dao;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-//롬복!!   --
 @AllArgsConstructor
 @Getter
-@ToString
-//@NoArgsConstructor
-//@Setter
 public class User {
     private Long id;
     private String name;
