@@ -15,7 +15,7 @@ public class Springjdbc02Application {
     public CommandLineRunner transationDemo(UserDao userDao){
         return args -> {
             try {
-                userDao.createAndUpdateUser("kang", "kang@exam.com", "errorkang@exam.com");
+                userDao.createAndUpdateUser("lee", "lee@exam.com", "errorlee@exam.com");
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
