@@ -41,7 +41,7 @@ public class FormController {
         if(result.hasErrors()){
             return "form";  //유효성검사에서 에러가 발견되었다면 form.html 뷰로 리턴
         }
-        
+
         return "result";  //성공했다면, result.html 이 응답.
     }
 }
