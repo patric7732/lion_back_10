@@ -6,6 +6,7 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.*;
 import java.util.ArrayList;
@@ -14,6 +15,11 @@ import java.util.List;
 
 @Controller
 public class ExamController {
+    @GetMapping("/guest/{name}")
+    public String guest(@PathVariable String name){
+        System.out.println(name);
+        return "redirect:/datetime";
+    }
     @GetMapping("/datetime")
     public String showDateTime(Model model) {
         // 날짜 및 시간 데이터
