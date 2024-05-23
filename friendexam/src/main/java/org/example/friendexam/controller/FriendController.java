@@ -45,5 +45,25 @@ public class FriendController {
         return "friends/detail";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteFriend(@PathVariable Long id){
+        friendService.deleteFriendById(id);
+        return "redirect:/friends";
+    }
+
+    //수정 localhost/friends/edit/{id}  -- Get  수정폼
+    //수정 localhost/friends/edit/{id}  -- Post  수정
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable Long id, Model model){
+        model.addAttribute("friend", friendService.findFriendById(id));
+        return "friends/edit";
+    }
+
+    @PostMapping("/edit")
+    public String editFriend(@ModelAttribute Friend friend){
+        friendService.saveFriend(friend);
+        return "redirect:/friends";
+    }
 
 }

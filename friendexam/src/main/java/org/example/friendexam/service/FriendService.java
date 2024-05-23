@@ -16,9 +16,13 @@ public class FriendService {
         return friendRepository.findAll();
     }
 
+
+
     //친구등록
     @Transactional
     public Friend saveFriend(Friend friend){
+        //Spring Data 에서 제공하는 save라는 메서드는 id에 해당하는 값이 이미 존재한다면 수정
+        //없다면 생성한다.
         return friendRepository.save(friend);
     }
 
@@ -26,5 +30,9 @@ public class FriendService {
     @Transactional(readOnly = true)
     public Friend findFriendById(Long id){
         return friendRepository.findById(id).orElse(null);
+    }
+    @Transactional
+    public void deleteFriendById(Long id){
+        friendRepository.deleteById(id);
     }
 }
