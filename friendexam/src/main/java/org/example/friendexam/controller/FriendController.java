@@ -5,10 +5,7 @@ import org.example.friendexam.domain.Friend;
 import org.example.friendexam.service.FriendService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -37,6 +34,15 @@ public class FriendController {
         friendService.saveFriend(friend);
         redirectAttributes.addFlashAttribute("message","친구등록 성공!!");
         return "redirect:/friends";
+    }
+
+    //친구상세페이지
+    //localhost/friends/1
+    @GetMapping("/{id}")
+    public String detailFriend(@PathVariable Long id, Model model){
+        Friend friend = friendService.findFriendById(id);
+        model.addAttribute("friend",friend);
+        return "friends/detail";
     }
 
 

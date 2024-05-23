@@ -21,4 +21,10 @@ public class FriendService {
     public Friend saveFriend(Friend friend){
         return friendRepository.save(friend);
     }
+
+    //id에 해당하는 친구정보조회
+    @Transactional(readOnly = true)
+    public Friend findFriendById(Long id){
+        return friendRepository.findById(id).orElse(null);
+    }
 }
