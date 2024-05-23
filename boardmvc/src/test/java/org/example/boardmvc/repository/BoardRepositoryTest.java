@@ -2,6 +2,7 @@ package org.example.boardmvc.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
@@ -13,8 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @JdbcTest
 @Import(CustomBoardRepositoryImpl.class)
-@ComponentScan(basePackages = "org.example.springmvc.repository")
-//@ContextConfiguration(classes = {BoardRepositoryTest.TestConfig.class})
+@ContextConfiguration(classes = {BoardRepository.class, CustomBoardRepositoryImpl.class})
 public class BoardRepositoryTest {
     @Autowired
     private BoardRepository boardRepository;
