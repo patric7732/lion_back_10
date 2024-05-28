@@ -9,21 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "schools")
-@Getter
-@Setter
+@Table(name = "authors")
 @NoArgsConstructor
-public class School {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter@Setter
+public class Author {
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "school")
-    private List<Student> students = new ArrayList<>();
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
 
-    public School(String name) {
+    public Author(String name) {
         this.name = name;
     }
 }
