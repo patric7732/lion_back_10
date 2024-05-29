@@ -58,8 +58,14 @@ public class EmployeeExamMain {
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         try{
-            Employee employee = em.find(Employee.class, 3L);
-            employee.setName("kang kyungmi");
+            Employee employee = em.find(Employee.class, 1L);
+//            employee.setName("kang kyungmi");
+            Project project = em.find(Project.class, 2L);
+            employee.getProjects().remove(project);
+
+
+
+
 
             em.getTransaction().commit();
         }catch (Exception e){
@@ -92,7 +98,7 @@ public class EmployeeExamMain {
 //        find();
 //        create();
 update();
-delete();
+//delete();
 
     }
 }

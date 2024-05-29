@@ -14,6 +14,8 @@
         <class>com.example.jpa.Author</class>
         <class>com.example.jpa.Employee</class>
         <class>com.example.jpa.Project</class>
+        <class>com.example.jpa.Person</class>
+        <class>com.example.jpa.Passport</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampledb"/>
