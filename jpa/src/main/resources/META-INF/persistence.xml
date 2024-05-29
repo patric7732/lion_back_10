@@ -7,15 +7,22 @@
     <persistence-unit name="UserPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 <!--        <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
-        <class>com.example.jpa.User</class>  <!-- Add this line -->
-        <class>com.example.jpa.School</class>
-        <class>com.example.jpa.Student</class>
-        <class>com.example.jpa.Book</class>
-        <class>com.example.jpa.Author</class>
-        <class>com.example.jpa.Employee</class>
-        <class>com.example.jpa.Project</class>
-        <class>com.example.jpa.Person</class>
-        <class>com.example.jpa.Passport</class>
+<!--        <class>com.example.jpa.User</class>  &lt;!&ndash; Add this line &ndash;&gt;-->
+<!--        <class>com.example.jpa.School</class>-->
+<!--        <class>com.example.jpa.Student</class>-->
+<!--        <class>com.example.jpa.Book</class>-->
+<!--        <class>com.example.jpa.Author</class>-->
+<!--        <class>com.example.jpa.Employee</class>-->
+<!--        <class>com.example.jpa.Project</class>-->
+<!--        <class>com.example.jpa.Person</class>-->
+<!--        <class>com.example.jpa.Passport</class>-->
+<!--        <class>com.example.jpa.Car</class>-->
+<!--        <class>com.example.jpa.Truck</class>-->
+<!--        <class>com.example.jpa.Car2</class>-->
+<!--        <class>com.example.jpa.Truck2</class>-->
+        <class>com.example.jpa.Car3</class>
+        <class>com.example.jpa.Truck3</class>
+        <class>com.example.jpa.Company</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampledb"/>
