@@ -31,9 +31,9 @@ public class SpringdatajpaApplication {
 //			repository.delete(user);
 //			log.info("사용자 삭제 : "+ user.getName());
 
-			List<User> users = repository.findByName("kim");
-
-			users.forEach(user -> log.info(user.getName()+"::"+user.getEmail()));
+//			List<User> users = repository.findByName("kim");
+//
+//			users.forEach(user -> log.info(user.getName()+"::"+user.getEmail()));
 		};
 	}
 }
