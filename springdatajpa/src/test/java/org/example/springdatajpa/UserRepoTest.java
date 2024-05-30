@@ -21,8 +21,10 @@ class UserRepoTest {
     void updateUserEmail() {
         repository.updateUserEmail(3L, "new_kang@example.com");
         Optional<User> user = repository.findById(3L);
-        assertThat(user.get().getEmail()).isEqualTo("new_kang@example.com");
-//        Assertions.assertEquals(user.get().getEmail().isEqualTo("new_kang@example.com"));
+        //이렇게 써야해요^^
+        assertThat(user.get().getEmail()).isEqualTo("new_kang@example.com");  //이건 괄호 위치가 틀렸고
+        Assertions.assertEquals(user.get().getEmail(),"new_kang@example.com");  //이건 메소드 사용방법이 틀렸어요 ㅠㅠ
+
         Assertions.assertTrue(user.isPresent(), "User should be present");
         Assertions.assertEquals("new_kang@example.com", user.get().getEmail(), "Email should be new_kang@example.com");
     }

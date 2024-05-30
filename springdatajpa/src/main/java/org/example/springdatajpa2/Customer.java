@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /*
 * CREATE TABLE jpa_customer (
     id BIGINT NOT NULL AUTO_INCREMENT,
@@ -26,6 +28,9 @@ public class Customer {
     private String name;
     private String email;
     private int age;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 
     public Customer(String name, String email) {
         this.name = name;
