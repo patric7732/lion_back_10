@@ -4,12 +4,12 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://localhost:3306/exampledb
+    url: jdbc:mysql://localhost:3306/hr
     username: carami
     password: kang1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
 
