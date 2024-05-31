@@ -1,16 +1,18 @@
 package org.example.springdatajpa2;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.jdbc.SqlGroup;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -89,4 +91,56 @@ class CustomerRepositoryTest {
         });
     }
 
+    @Test
+    void testFindByName() {
+    }
+
+    @Test
+    void findByEmail() {
+    }
+
+    @Test
+    void testFindByEmailContaining() {
+    }
+
+    @Test
+    void testFindCustomerOrderCount() {
+    }
+
+    @Test
+    void findCustomersWithLatestOrder() {
+    }
+
+    @Test
+    @SqlGroup({
+            @Sql(value = "classpath:db/test.sql",
+                    config = @SqlConfig(encoding = "utf-8", separator = ";", commentPrefix = "--"),
+                    executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    })
+    void findCustomersOlderThanAverage() {
+        List<Customer> customersOlderThanAverage = repository.findCustomersOlderThanAverage();
+
+        assertThat(customersOlderThanAverage).hasSize(4)
+                .extracting(Customer::getName)
+                .contains("최지현");
+
+    }
+
+    @BeforeAll
+    static void setUp(){
+        log.info("---------> BeforeAll");
+    }
+    @AfterAll
+    static void tearDown(){
+        log.info("---------> AfterAll");
+    }
+
+    @BeforeEach
+    void BeforeEach(){
+        log.info("---------> BeforeEach");
+    }
+    @AfterEach
+    void AfterEach(){
+        log.info("---------> AfterEach");
+    }
 }
