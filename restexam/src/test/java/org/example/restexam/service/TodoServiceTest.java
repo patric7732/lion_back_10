@@ -26,23 +26,35 @@ class TodoServiceTest {
 
     @Test
     void getTodo() {
+        Todo todo = service.getTodo(1L);
+        log.info("Todo::::::::"+todo);
     }
 
     @Test
     void addTodo() {
-        Todo todo1 = service.addTodo("Todo1");
+        Todo todo1 = service.addTodo("Todo4");
         log.info("Todo::::"+todo1);
     }
 
     @Test
-    void updateTodo() {
+    void updateTodoById() {
+        log.info("Before Todo::::::::"+service.getTodo(1L));
+        Todo todo = service.updateTodo(1L);
+        log.info("After Todo:::::::::"+todo);
     }
 
     @Test
-    void testUpdateTodo() {
+    void updateTodo() {
+        Todo todo = new Todo("updte Todo");
+        todo.setId(1L);
+        log.info("Before Todo :::::::::::: "+ service.getTodo(1L));
+        service.updateTodo(todo);
+        log.info("After Todo :::::::::::: "+ service.getTodo(1L));
     }
 
     @Test
     void deleteTodo() {
+        service.deleteTodo(1L);
+        log.info("Todo:::"+service.getTodo(1L));
     }
 }
