@@ -52,6 +52,7 @@ public class TodoService {
         return updateTodo;
     }
 
+    @Transactional
     public void deleteTodo(Long id){ //id에 해당하는 todo 삭제
         Optional<Todo> findTodo = todoRepository.findById(id);
         if(findTodo.isEmpty())
