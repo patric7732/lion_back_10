@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 //    @Autowired
     private final UserService userService;
-    
+
 //    public HomeController() {
 //      log.info("HomeController 생성자 실행!")  ;
 //    }
@@ -32,6 +32,7 @@ public class HomeController {
 
     @GetMapping("/hello")
     public String hello(){
+        userService.list();
         log.info("hello() 실행");
         return "hello";
     }
