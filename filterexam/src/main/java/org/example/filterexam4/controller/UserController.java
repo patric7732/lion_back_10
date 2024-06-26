@@ -72,11 +72,11 @@ public class UserController {
 
     @GetMapping("/info")
     public String info(HttpServletRequest request){
-        User user = UserContext.getUser();
-        if(user != null)
+//        User user = UserContext.getUser();
+//        if(user != null)
             return "info";
-        else
-            return "redirect:/loginform";
+//        else
+//            return "redirect:/loginform";
     }
 
 }
