@@ -20,7 +20,14 @@ public class UserController {
 
     @PostMapping("/userreg")
     public String userreg(@ModelAttribute("user") User user, BindingResult result){
-        System.out.println(user.getUsername());
+        if(result.hasErrors()){
+            return "userregform";
+        }
+        User byUsername = userService.findByUsername(user.getUsername());
+        if(byUsername != null){
+            result.rejectValue("username",null,"이미 사용중인 아이디입니다.");
+            return "users/userregerror";
+        }
 
         userService.registUser(user);
         return "redirect:/welcome";
@@ -29,5 +36,14 @@ public class UserController {
     @GetMapping("/welcome")
     public String welcome(){
         return "users/welcome";
+    }
+
+    @GetMapping("/loginform")
+    public String loginform(){
+        return "users/loginform";
+    }
+    @GetMapping("/")
+    public String home(){
+        return "home";
     }
 }
