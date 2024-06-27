@@ -23,8 +23,8 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults());
         http
                 .rememberMe(rememberMe ->rememberMe
-                        .rememberMeParameter("remember")
-//                        .tokenValiditySeconds(300)
+//                        .rememberMeParameter("remember")
+                        .tokenValiditySeconds(60)
                 );
 
 
