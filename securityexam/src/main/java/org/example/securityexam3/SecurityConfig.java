@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .authorizeRequests(authroizeRequest -> authroizeRequest
                         .requestMatchers("/shop/**","/test").permitAll() //이때 지정한 페이지는 누구든지 접근 가능.
                         .requestMatchers("/user/mypage").hasRole("USER")
-                        .requestMatchers("/admin/abc").hasRole("ADMIN")
+                        .requestMatchers("/admin/abc").hasRole("ADMIN") //구체적인 경로가 먼저 와야 한다.
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN","SUPERUSER")
                         .anyRequest() //모든 요청
                         .authenticated() //인증을 요구
@@ -52,7 +52,11 @@ public class SecurityConfig {
                 .password(passwordEncoder().encode("1234"))
                 .roles("SUPERUSER")
                 .build();
+        UserDetails carami = User.withUsername("carami")
+                .password(passwordEncoder().encode("1234"))
+                .roles("ADMIN","USER")
+                .build();
 
-        return new InMemoryUserDetailsManager(user,admin,superuser);
+        return new InMemoryUserDetailsManager(user,admin,superuser,carami);
     }
 }
