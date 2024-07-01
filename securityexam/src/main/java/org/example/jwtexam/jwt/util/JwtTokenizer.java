@@ -52,7 +52,7 @@ public class JwtTokenizer {
         return createToken(id,email,name,username,roles,ACCESS_TOKEN_EXPIRE_COUNT,accessSecret);
     }
     //Refresh Token생성
-    public String refreshToken(Long id, String email, String name, String username, List<String> roles){
+    public String createRefreshToken(Long id, String email, String name, String username, List<String> roles){
         return createToken(id,email,name,username,roles,REFRESH_TOKEN_EXPIRE_COUNT,refreshSecret);
     }
 
