@@ -5,3 +5,12 @@ Content-Type: application/json
   "username": "lion",
   "password": "1234"
 }
+
+###
+GET http://localhost:8080/api/authtest
+Cookie: accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaW9uIiwidXNlcm5hbWUiOiJsaW9uIiwibmFtZSI6Imxpb24iLCJ1c2VySWQiOjYsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzE5ODg4NTM2LCJleHAiOjE3MTk4OTAzMzZ9.yWvGMuVBvG7KfJ8cd-j2OdHCiCPHR1Oje6sqnZHvOZ8
+
+
+
+###
+GET http://localhost:8080/api/authtest
