@@ -8,9 +8,16 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/api/authtest
-Cookie: accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaW9uIiwidXNlcm5hbWUiOiJsaW9uIiwibmFtZSI6Imxpb24iLCJ1c2VySWQiOjYsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzE5ODg4NTM2LCJleHAiOjE3MTk4OTAzMzZ9.yWvGMuVBvG7KfJ8cd-j2OdHCiCPHR1Oje6sqnZHvOZ8
-
-
+Cookie: accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaW9uIiwidXNlcm5hbWUiOiJsaW9uIiwibmFtZSI6Imxpb24iLCJ1c2VySWQiOjYsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzE5ODkzNTM0LCJleHAiOjE3MTk4OTM1OTR9.3AANYLqXtqQkxIAOY0DgkCqNuGB_XOEn773mfD-iRqI
 
 ###
 GET http://localhost:8080/api/authtest
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaW9uIiwidXNlcm5hbWUiOiJsaW9uIiwibmFtZSI6Imxpb24iLCJ1c2VySWQiOjYsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzE5ODkzNTM0LCJleHAiOjE3MTk4OTM1OTR9.3AANYLqXtqQkxIAOY0DgkCqNuGB_XOEn773mfD-iRqI
+
+###
+# @no-cookie-jar
+GET http://localhost:8080/api/authtest
+
+###
+POST http://localhost:8080/refreshToken
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaW9uIiwidXNlcm5hbWUiOiJsaW9uIiwibmFtZSI6Imxpb24iLCJ1c2VySWQiOjYsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzE5ODk1NzM0LCJleHAiOjE3MjA1MDA1MzR9.v-M1FDHAvdlE5h8FmlWB6f1CsN2Nl5uszZRas23rXW8
