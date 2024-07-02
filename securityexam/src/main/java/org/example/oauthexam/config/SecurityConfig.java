@@ -2,6 +2,7 @@ package org.example.oauthexam.config;
 
 import lombok.RequiredArgsConstructor;
 import org.example.oauthexam.domain.SocialUser;
+import org.example.oauthexam.security.CustomOAuth2AuthenticationSuccessHandler;
 import org.example.oauthexam.security.CustomUserDetailsService;
 import org.example.oauthexam.service.SocialUserService;
 import org.springframework.context.annotation.Bean;
@@ -25,13 +26,14 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final CustomUserDetailsService customUserDetailsService;
+    private final CustomOAuth2AuthenticationSuccessHandler customOAuth2AuthenticationSuccessHandler;
     private final SocialUserService socialUserService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/userregform","/userreg","/").permitAll()
+                        .requestMatchers("/userregform","/userreg","/","/loginform","/").permitAll()
+                        .requestMatchers("/oauth2/**", "/login/oauth2/code/github","/registerSocialUser","/saveSocialUser").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
@@ -44,7 +46,7 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(this.oauth2UserService())
                         )
-                        .successHandler()
+                        .successHandler(customOAuth2AuthenticationSuccessHandler)
                 );
 
         return http.build();

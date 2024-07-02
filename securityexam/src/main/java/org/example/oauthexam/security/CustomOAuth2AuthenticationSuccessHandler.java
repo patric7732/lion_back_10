@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.example.jwtexam.security.CustomUserDetails;
+import org.example.oauthexam.domain.Role;
 import org.example.oauthexam.domain.SocialLoginInfo;
 import org.example.oauthexam.domain.User;
 import org.example.oauthexam.service.SocialLoginInfoService;
@@ -28,7 +29,8 @@ public class CustomOAuth2AuthenticationSuccessHandler implements AuthenticationS
     private final SocialLoginInfoService socialLoginInfoService;
     private final UserService userService;
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        // 요청 경로에서 provider 추출
         // redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         String requestUri = request.getRequestURI();
         String provider = extractProviderFromUri(requestUri);
@@ -41,6 +43,8 @@ public class CustomOAuth2AuthenticationSuccessHandler implements AuthenticationS
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         DefaultOAuth2User defaultOAuth2User = (DefaultOAuth2User) auth.getPrincipal();
 
+        // attributes 에 소셜로그인한 정보가 들어가 있는데, 소셜로그인 방식에따라서 key가 달라질 수 있다.
+        // OAuth2 로그인 방식(provider)이 많아질때마다 조건문이 들어갈 수 있다.
         int socialId = (int)defaultOAuth2User.getAttributes().get("id");
         String name = (String)defaultOAuth2User.getAttributes().get("name");
 
@@ -50,7 +54,7 @@ public class CustomOAuth2AuthenticationSuccessHandler implements AuthenticationS
             User user = userOptional.get();
 
             // CustomUserDetails 생성
-            CustomUserDetails customUserDetails = new CustomUserDetails(user.getUsername(), user.getPassword(), user.getName(), user.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
+            org.example.jwtexam.security.CustomUserDetails customUserDetails = new CustomUserDetails(user.getUsername(), user.getPassword(), user.getName(), user.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
 
             // Authentication 객체 생성 및 SecurityContext에 설정
             Authentication newAuth = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
@@ -64,11 +68,6 @@ public class CustomOAuth2AuthenticationSuccessHandler implements AuthenticationS
             SocialLoginInfo socialLoginInfo = socialLoginInfoService.saveSocialLoginInfo(provider, String.valueOf(socialId));
             response.sendRedirect("/registerSocialUser?provider=" + provider + "&socialId=" + socialId + "&name=" + name + "&uuid=" + socialLoginInfo.getUuid());
         }
-    }
-
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
     }
 
 
