@@ -19,7 +19,7 @@ public class Application {
     @Bean
     public CommandLineRunner run(){
         return args -> {
-            itemService.registerItem("pen",2000);
+            itemService.registerItem("note",5000);
         };
     }
 }
