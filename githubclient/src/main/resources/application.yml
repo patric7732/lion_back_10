@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: githubclient
+github:
+  api:
+    url: https://api.github.com
+    token: ${GITHUB_TOKEN_KEY}
+
+
