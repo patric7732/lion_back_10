@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class UserContorller {
         return "users/userregform";
     }
 
-    @GetMapping("/userreg")
+    @PostMapping("/userreg")
     public String userreg(@ModelAttribute("user") User user, BindingResult result){
         if(result.hasErrors()){
             return "userregform";
