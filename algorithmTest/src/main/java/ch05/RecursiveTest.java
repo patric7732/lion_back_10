@@ -1,4 +1,4 @@
-package ch5;
+package ch05;
 
 public class RecursiveTest {
     static void recursice(int n){
