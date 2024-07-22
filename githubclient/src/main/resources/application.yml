@@ -2,8 +2,12 @@ spring:
   application:
     name: githubclient
 
-    
+
 github:
   api:
     url: https://api.github.com
     token: ${GITHUB_API_TOKEN}
+
+server:
+  port: 8080
+
